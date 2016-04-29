@@ -1,0 +1,6 @@
+# Allows SSH to match sections for alias as well the fully expanded hostname
+# See http://lists.mindrot.org/pipermail/openssh-unix-dev/2014-November/033098.html
+CanonicalizeHostname yes
+
+Host *
+  Compression yes

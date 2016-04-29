@@ -1,0 +1,47 @@
+# Allows SSH to match sections for alias as well the fully expanded hostname
+# See http://lists.mindrot.org/pipermail/openssh-unix-dev/2014-November/033098.html
+CanonicalizeHostname yes
+
+Host short.alias
+  # 'short.alias' will redirect to 'some.long.fqdn'
+  HostName some.long.fqdn
+
+Host some.long.fqdn
+  # This host has different connection settings and a non-standard SSH key
+  # This section also applies if you did 'ssh short.alias'
+  User useroverride
+  Port 2222
+  IdentityFile ~/.ssh/override_id_rsa
+
+Host local.vm.ip
+  # BAD FOR SECURITY: Don't check hosts file
+  # Useful for vagrant VMs whose host signature changes all the time
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
+  CheckHostIP no
+
+Host home.server
+  # A trusted home server where we can be a bit more liberal in our settings
+  HostName alias.duckdns.org
+
+  # Run remote X11 applications locally
+  ForwardX11 Yes
+
+  # Setup a SOCKS proxy
+  DynamicForward 8910
+
+  # Forward VNC (port 5900) on the remote machine to local port 5905
+  LocalForward 5905 localhost:5900
+
+Host lan.machine
+  # Connect to 192.168.1.1 behind your LAN by first connecting to home.server
+  User userbar
+  Hostname 192.168.1.1
+  Port 2222
+  ProxyCommand ssh -q -W %h:%p home.server
+
+Host *
+  Compression yes
+  # You may not want to enable agent forwarding globally if you don't trust the
+  # remote server: https://heipei.github.io/2015/02/26/SSH-Agent-Forwarding-considered-harmful/
+  ForwardAgent yes
