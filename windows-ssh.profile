@@ -19,7 +19,7 @@ agent_add_keys () {
   SSH_KEYS=()
   while read line;do
     SSH_KEYS+=("$line")
-  done < <(find "$CLOUD/Setup/ssh" | grep id_rsa | grep -v -e 'pub$')
+  done < <(find "$CLOUD_SHELL_PROFILES/ssh" | grep id_rsa | grep -v -e 'pub$')
   ssh-add "${SSH_KEYS[@]}"
 }
 

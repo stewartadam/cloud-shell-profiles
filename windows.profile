@@ -1,5 +1,5 @@
 # Start an SSH agent with all keys
-. "$CLOUD/Setup/windows-ssh.profile"
+. "$CLOUD_SHELL_PROFILES/windows-ssh.profile"
 
 # Overrides
 alias ls="ls --color"

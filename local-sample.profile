@@ -1,5 +1,5 @@
 # Place the contents below in ~/.profile (OSX) or ~/.bash_profile (Windows or
-# Linux) and adjust CLOUD path to the Setup folder.
+# Linux) and adjust the CLOUD_SHELL_PROFILES path to point to the cloned repo.
 
-CLOUD="$HOME/Dropbox"
-. $CLOUD/Setup/profile_common
+CLOUD_SHELL_PROFILES="$HOME/Dropbox/cloud-shell-profiles"
+. "$CLOUD_SHELL_PROFILES/profile_common"

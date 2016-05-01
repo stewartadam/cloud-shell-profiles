@@ -1,6 +1,6 @@
-# virtualenvwrapper
-export WORKON_HOME="$HOME/devel/virtualenvs"
-source /usr/local/bin/virtualenvwrapper.sh
+## Uncomment me to use virtualenvwrapper (sudo pip install virtualenvwrapper)
+#export WORKON_HOME="$HOME/.virtualenvs"
+#source /usr/local/bin/virtualenvwrapper.sh
 
 # Overrides
 alias ls="ls -G"

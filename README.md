@@ -23,8 +23,8 @@ all your other machines seamlessly.
 2. On each of the machines you'd like to keep in sync:
   1. Install the desktop sync client of your chosen cloud provider
   2. Copy the contents of [local-sample.profile](local-sample.profile) to your `~/.profile` file (create it if necessary)
-  3. Adjust the `CLOUD` variable as necessary to point to the `cloud-shell-profiles` folder you checked out in step 1
-3. Open a new terminal session and type `echo $CLOUD` - if all is working, you should see the path configured in step 2-iii!
+  3. Adjust the `CLOUD_SHELL_PROFILES` variable as necessary to point to the `cloud-shell-profiles` folder you checked out in step 1
+3. Open a new terminal session and type `echo $CLOUD_SHELL_PROFILES` - if all is working, you should see the path configured in step 2-iii!
 
 # Configuration
 Once you've laid the framework for cloud shell profiles, the rest is up to you.
@@ -51,5 +51,5 @@ If you have SSH keys, place them in the [ssh](ssh) folder so that they are
 synchronized between machines.
 
 Unfortunately, I have not found a straightforward way to have SSH load its key
-files directly from `$CLOUD/cloud-shell-profiles/ssh`, so for now you will need
-to copy SSH keys locally before using them: `cp $CLOUD/cloud-shell-profiles/ssh/id_rsa* ~/.ssh`
+files directly from `$CLOUD_SHELL_PROFILES/ssh`, so for now you will need
+to copy SSH keys locally before using them: `cp $CLOUD_SHELL_PROFILES/ssh/id_rsa* ~/.ssh`

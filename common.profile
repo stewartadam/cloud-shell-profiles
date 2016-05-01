@@ -1,5 +1,5 @@
 # Ensure SSH uses the shared configuration on all OSs
-alias ssh="ssh -F \"$CLOUD/Setup/ssh/config\""
+alias ssh="ssh -F \"$CLOUD_SHELL_PROFILES/ssh/config\""
 
 # Put other custom directives below
 
@@ -9,18 +9,18 @@ alias ssh="ssh -F \"$CLOUD/Setup/ssh/config\""
 OS="$(uname -s)"
 case "$OS" in
   Darwin)
-    . "$CLOUD/Setup/osx.profile"
+    . "$CLOUD_SHELL_PROFILES/osx.profile"
     ;;
 
   CYGWIN*|MINGW*|MSYS*)
-    . "$CLOUD/Setup/windows.profile"
+    . "$CLOUD_SHELL_PROFILES/windows.profile"
     ;;
 
   Linux)
-    . "$CLOUD/Setup/linux.profile"
+    . "$CLOUD_SHELL_PROFILES/linux.profile"
     ;;
 
   *)
-    . "$CLOUD/Setup/linux.profile"
+    . "$CLOUD_SHELL_PROFILES/linux.profile"
     ;;
 esac
