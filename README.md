@@ -1,5 +1,5 @@
 # About
-Cloud Shell Profiles centralizes your shell script and SSH configuration using a
+Cloud Shell Profiles centralizes your shell profiles and SSH configuration using a
 cloud sync provider (Dropbox, OneDrive, Google Drive, Copy, etc) so that they
 are shared and synchronized between your machines.
 
