@@ -1,6 +1,8 @@
-## Uncomment me to use virtualenvwrapper (sudo pip install virtualenvwrapper)
-#export WORKON_HOME="$HOME/.virtualenvs"
-#source /usr/local/bin/virtualenvwrapper.sh
+# Launch SSH agent (not longer automatic since 10.12) - https://twitter.com/lorentey/status/753581927412686850
+OSX_VERSION=$(sw_vers -productVersion | cut -d'.' -f2)
+if [ $OSX_VERSION -ge 12 ] && [ -z $SSH_AGENT_PID ];then
+  { eval `ssh-agent`; ssh-add -A -K; } &>/dev/null
+fi
 
 # Overrides
 alias ls="ls -G"
