@@ -1,3 +1,6 @@
+# See README.md for important note about syncing and specifying SSH keys between
+# machines.
+
 # Allows SSH to match sections for alias as well the fully expanded hostname
 # See http://lists.mindrot.org/pipermail/openssh-unix-dev/2014-November/033098.html
 CanonicalizeHostname yes
@@ -11,7 +14,11 @@ Host some.long.fqdn
   # This section also applies if you did 'ssh short.alias'
   User useroverride
   Port 2222
-  IdentityFile ~/.ssh/override_id_rsa
+
+  # Use a specific key - if using the symlink approach
+  IdentityFile id_rsa_foo
+  # Use a specific key - if using the absolute path approach
+  IdentityFile ~/Dropbox/cloud-shell-profiles/id_rsa_foo
 
 Host local.vm.ip
   # BAD FOR SECURITY: Don't check hosts file
