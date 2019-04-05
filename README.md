@@ -4,7 +4,7 @@ a cloud sync provider (Dropbox, OneDrive, Google Drive, Copy, etc) so that they
 are shared and synchronized between your machines.
 
 The scripts are intended to be used cross-platform and support Linux, macOS
-and Windows (bash via MinGW, MSYS or Cygwin), although support for other OSs can
+and Windows (bash via WSL/MinGW/MSYS/Cygwin), although support for other OSs can
 be added in easily.
 
 # Use cases
