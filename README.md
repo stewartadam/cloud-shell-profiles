@@ -43,22 +43,19 @@ you don't want them.
 Check out [ssh/config.sample](ssh/config.sample) for some examples of cool
 tricks you can do with a SSH config.
 
-### Default alias
-I've opted to simply alias `ssh` as `ssh -F "$CLOUD_SHELL_PROFILES/ssh/config"`
-on all OSs so the shared SSH configuration (stored at [ssh/config](ssh/config)
-in the cloud shell profiles folder) will be used out of the box.
-
-### SSH keys via symlink (recommended)
+### Option 1: SSH directory as symlink (recommended)
 If you have SSH keys, place them in the [ssh](ssh) folder of your cloud shell
-profiles folder so that they are synchronized between machines.
+profiles folder so that they are synchronized between machines (make sure
+they are password-protected).
 
 Changing your `.ssh` directory to a symbolic link is the easiest way to ensure
-your SSH configuration and **and keys** are used consistently between machines:
-```
-mv .ssh .ssh.bak
+your SSH configuration **and keys** are used consistently between machines:
+
+```sh
+mv ~/.ssh ~/.ssh.bak
 ln -s "$CLOUD_SHELL_PROFILES/ssh" ~/.ssh
 
-# This prevent SSH from backing out due to bad permissions
+# This prevent SSH from backing out due to bad permissions after a cloud sync
 chmod 700 "$CLOUD_SHELL_PROFILES"/ssh ~/.ssh
 chmod 600 "$CLOUD_SHELL_PROFILES"/ssh/*
 chmod 644 "$CLOUD_SHELL_PROFILES"/ssh/id_*.pub
@@ -67,17 +64,18 @@ chmod 644 "$CLOUD_SHELL_PROFILES"/ssh/id_*.pub
 Now simply use relative paths (i.e. `IdentityFile id_rsa_foo`) in your SSH
 config as usual.
 
-### SSH keys without symlink (not recommended)
+### Option 2: SSH keys without symlink (not recommended)
 If some of your machines fail when using the symlink approach above, you can
-still leverage the `ssh -F` alias to share a config but you will need to specify
-keys to SSH using one of two approaches:
+still alias `ssh` as `ssh -F path-to-cloud-shell-config` to force it to use
+the cloud synchronized SSH config, but you will need to specify keys to SSH
+using one of two approaches:
 1. Provide the absolute path to the key each time IdentityFile is used (i.e.
-   `IdentityFile ~/Dropbox/cloud-shell-profiles/ssh/id_rsa_foo`). This requires
-   you install cloud-shell-profiles at a the same location on all machines.
+   `IdentityFile ~/Dropbox/cloud-shell-profiles/ssh/id_rsa_foo`), requiring
+   you install cloud-shell-profiles at the exact same location on all machines.
 2. Provide a relative path (i.e. `IdentityFile id_rsa_foo`) and copy the keys
    from `$CLOUD_SHELL_PROFILES/ssh` to `~/.ssh` manually. You will be required
-   to manually re-copy every time you add/change a key, but this permits your
-   cloud shell profiles folder to live in different places on different
+   to manually re-copy them every time you add/change a key, but this permits
+   your cloud shell profiles folder to live in different places on different
    machines.
 
 ## Extending
