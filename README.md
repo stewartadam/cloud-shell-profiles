@@ -31,9 +31,9 @@ transferred to all your other machines seamlessly.
 Once you've laid the framework for cloud shell profiles, the rest is up to you.
 
 ## Shell profiles
-Anything placed in [common.profile](common.profile) will be sourced on all
-OSs, where as [osx.profile](osx.profile), [linux.profile](linux.profile) and
-[windows.profile](windows.profile) are only sourced when starting a shell on
+Anything placed in [common.profile](profiles/common.profile) will be sourced on all
+OSs, where as [osx.profile](profiles/osx.profile), [linux.profile](profiles/linux.profile) and
+[windows.profile](profiles/windows.profile) are only sourced when starting a shell on
 that OS.
 
 I've left a few handy aliases in those files, but feel free to clean those up if
@@ -79,7 +79,7 @@ using one of two approaches:
    machines.
 
 ## Extending
-`autoloader.profile` is responsible for loading OS-specific profiles. If your OS
-is not recognized (e.g. if you use a BSD variant), `unmatched.profile` is loaded
+[`autoloader.profile`](profiles/autoloader.profile) is responsible for loading OS-specific profiles. If your OS
+is not recognized (e.g. if you use a BSD variant), [`unmatched.profile`](profiles/unmatched.profile) is loaded
 by default with a small warning. Adjust `autoloader.profile` if you want to load
 a new OS-specific profile.
